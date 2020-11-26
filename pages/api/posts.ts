@@ -8,9 +8,12 @@ export default async function getPosts(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  await prisma.post.create({
-    data: { title: "My post title", body: "This is my amazing post!" },
-  });
+  //await prisma.post.create({
+  //  data: { title: "My third post title", body: "This is my amazing third post!" },
+  //
+//});
 
-  res.status(200).json({ name: "John Doe" });
+  const posts = await prisma.post.findMany();
+
+  res.status(200).json(posts);
 }
